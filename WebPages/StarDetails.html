@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" type="text/css" href="../style/StarDetails.css">
+    <link rel="stylesheet" type="text/css" href="../../style/Nav.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <header>
+        <a href="/about" class="logo">
+            <h1>Groupie Tracker</h1>
+        </a>
+        <nav class="NavBar">
+            <a href="/">Home</a>
+            <a href="/stars">Stars</a>
+            <a href="/about">About us</a>
+        </nav>
+    </header>
+    <div class="page">
+        <div class="Container">
+            <div class="IntroContainer">
+                <div class="ImageContainer"> <img class="BandImage" src="{{ .Image }}" alt="Star Image"> </div>
+                <div class="MainData">
+                    <h1 class="Name">{{ .Name }}</h1>
+                    <p class="CreationDate">Creation Date: {{ .CreationDate }}</p>
+                    <p class="FirstAlbum">First Album: {{ .FirstAlbum }}</p>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card Members">
+                    <p>Members:</p>
+                    <ul>
+                        {{ range .Members }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+                <div class="card Locations">
+                    <p>Locations:</p>
+                    <ul>
+                        {{ range .Locations }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+                <div class="card Dates">
+                    <p>Dates:</p>
+                    <ul>
+                        {{ range $location, $dates := .Dates }}
+                        <li>{{ $location }}:
+                            <ul>
+                                {{ range $index, $date := $dates }}
+                                <li>{{ $date }}</li>
+                                {{ end }}
+                            </ul>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
